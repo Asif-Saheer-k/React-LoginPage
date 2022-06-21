@@ -7,14 +7,13 @@ import { useForm } from "react-hook-form";
 function Login(props) {
   console.log("props", props.title);
   const [error, setError] = useState("");
- 
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("userInfo");
-    if (userInfo) {
-      navigate("/products");
+    const adminInfo = localStorage.getItem("adminInfo");
+    if (adminInfo) {
+      navigate("/adminHome");
     }
   }, []);
   const {
@@ -30,37 +29,18 @@ function Login(props) {
 
     const email = data.email;
     const password = data.password;
-
-  
-
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-
-      const { data } = await axios.post(
-        "/api/users/login",
-        {
-          email,
-          password,
-        },
-        config
-      );
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      console.log("hoi");
-
-      navigate("/products");
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-      console.log(error.response.status);
-      console.log(error.response.data.message);
-      setError(error.response.data.message);
-    }
  
-   
+      console.log("else admin");
+      const adminEmail = "admin@gmail.com";
+      const adminPassword = "asifsaheer";
+      if (email === adminEmail && password === adminPassword) {
+        console.log("admin");
+        localStorage.setItem("adminInfo", JSON.stringify(adminEmail));
+        navigate("/adminHome");
+      } else {
+        setError("Incorrect Password And Email");
+      }
+    
   };
 
   return (
@@ -69,7 +49,7 @@ function Login(props) {
         <div className="row justify-content-center">
           <div className="col-md-4 mt-5">
             <div>
-              <h3 className="text-center"> LOGIN</h3>
+              <h3 className="text-center">{props.title} LOGIN</h3>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>

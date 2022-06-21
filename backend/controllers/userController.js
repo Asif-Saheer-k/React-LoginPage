@@ -43,15 +43,4 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-const userdatails=asyncHandler(async(req,res)=>{
-  const users=await User.find()
-  if(users){
-   res.status(201).json({
-
-   })
-  }
-
-})
-
-
-module.exports = { registerUser, authUser,userdatails };
+module.exports = { registerUser, authUser};
