@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(
-      "mongodb+srv://asifsaheer:asifsaheer@cluster0.s7gbb.mongodb.net/?retryWrites=true&w=majority",
+      "mongodb+srv://asifsaheer:asifsaheer@cluster0.kei3r.mongodb.net/?retryWrites=true&w=majority",
+      
    
     );
 
@@ -14,4 +15,5 @@ const connectDB = async () => {
   }
 };
 module.exports = connectDB;
+
 

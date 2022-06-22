@@ -5,18 +5,19 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function Login(props) {
-  console.log("props", props.title);
-  const [error, setError] = useState("");
- 
-
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
     if (userInfo) {
       navigate("/products");
     }
   }, []);
+  console.log("props", props.title);
+  const [error, setError] = useState("");
+ 
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
